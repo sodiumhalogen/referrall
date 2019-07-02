@@ -1,0 +1,30 @@
+enum UserType {
+  USER, ADMIN
+}
+
+type User {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  firstName: String
+  lastName: String
+  email: String! @unique
+  permissions: UserType! @default(value: USER)
+  messages: [Message!]!
+  logo: String
+  calendly: String
+  verified: Boolean!
+}
+
+type Message {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  text: String!
+  to: String!
+  from: User!
+  video: String
+  thumbnail: String
+  views: Int! @default(value: 0)
+  sent: Boolean! @default(value: false)
+}
